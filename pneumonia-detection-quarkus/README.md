@@ -9,8 +9,8 @@ cd models
 curl https://djl-tensorflow-javacpp.s3.amazonaws.com/tensorflow-models/chest_x_ray/saved_model.zip | jar xv
 cd ..
 
-mvn clean install -Dai.djl.repository.zoo.location=models/saved_model -Pnative
-target/pneumonia-detection-quarkus-1.0.0-SNAPSHOT-runner -Dai.djl.repository.zoo.location=models/saved_model
+mvn clean install -Dai.djl.repository.zoo.location=$PWD/models/saved_model -Pnative
+target/pneumonia-detection-quarkus-1.0.0-SNAPSHOT-runner -Dai.djl.repository.zoo.location=$PWD/models/saved_model
 ```
 
 `curl localhost:8080/detect` attempts to run the model (results in `ai.djl.engine.EngineException: No deep learning engine found.`)

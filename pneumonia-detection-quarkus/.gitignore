@@ -3,6 +3,8 @@
 .classpath
 .settings/
 bin/
+models/
+saved_model/
 
 # IntelliJ
 .idea
