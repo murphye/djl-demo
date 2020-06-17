@@ -1,3 +1,20 @@
+# Quarkus + DJL Demo
+
+Note: Tested with GraalVM 20.1.0 on Mac (https://www.graalvm.org/docs/reference-manual/native-image/)
+Note: Error remains with Native executable (see below)
+
+```
+mkdir models
+cd models
+curl https://djl-tensorflow-javacpp.s3.amazonaws.com/tensorflow-models/chest_x_ray/saved_model.zip | jar xv
+cd ..
+
+mvn clean install -Dai.djl.repository.zoo.location=models/saved_model -Pnative
+target/pneumonia-detection-quarkus-1.0.0-SNAPSHOT-runner -Dai.djl.repository.zoo.location=models/saved_model
+```
+`curl localhost:8080/detect` attempts to run the model (results in `ai.djl.engine.EngineException: No deep learning engine found.`)
+`curl localhost:8080/check` demonstrates that the TensorFlow Engine is loaded via ServiceLoader mechanism
+
 # pneumonia-detection-quarkus project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
