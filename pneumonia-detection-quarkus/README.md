@@ -12,8 +12,10 @@ cd ..
 mvn clean install -Dai.djl.repository.zoo.location=models/saved_model -Pnative
 target/pneumonia-detection-quarkus-1.0.0-SNAPSHOT-runner -Dai.djl.repository.zoo.location=models/saved_model
 ```
+
 `curl localhost:8080/detect` attempts to run the model (results in `ai.djl.engine.EngineException: No deep learning engine found.`)
-`curl localhost:8080/check` demonstrates that the TensorFlow Engine is loaded via ServiceLoader mechanism
+
+`curl localhost:8080/check` demonstrates that the TensorFlow Engine is loaded via ServiceLoader mechanism. This contradicts the error from `/detect`
 
 # pneumonia-detection-quarkus project
 
