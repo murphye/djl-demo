@@ -12,13 +12,21 @@
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus-plugin.version>1.5.1.Final</quarkus-plugin.version>
+    <quarkus-plugin.version>1.5.2.Final</quarkus-plugin.version>
     <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>1.5.1.Final</quarkus.platform.version>
+    <quarkus.platform.version>1.5.2.Final</quarkus.platform.version>
     <djl.version>0.6.0-SNAPSHOT</djl.version>
     <surefire-plugin.version>2.22.1</surefire-plugin.version>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>djl.ai</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </repository>
+  </repositories>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -36,14 +44,22 @@
       <artifactId>quarkus-resteasy</artifactId>
     </dependency>
     <dependency>
-      <groupId>ai.djl</groupId>
-      <artifactId>api</artifactId>
-      <version>${djl.version}</version>
+      <groupId>org.bytedeco</groupId>
+      <artifactId>javacpp</artifactId>
+      <!-- Seems only 1.5.4 works with GraalVM -->
+      <version>1.5.4-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>ai.djl.tensorflow</groupId>
-      <artifactId>tensorflow-api</artifactId>
-      <version>${djl.version}</version>
+      <groupId>org.bytedeco</groupId>
+      <artifactId>javacpp</artifactId>
+      <version>1.5.4-SNAPSHOT</version>
+      <classifier>macosx-x86_64</classifier>
+    </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <!-- Why this get downgraded to 3.6.1 by default? -->
+      <version>3.8.0</version>
     </dependency>
     <dependency>
       <groupId>ai.djl.tensorflow</groupId>
@@ -54,11 +70,6 @@
       <groupId>ai.djl.tensorflow</groupId>
       <artifactId>tensorflow-native-auto</artifactId>
       <version>2.1.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.protobuf</groupId>
-      <artifactId>protobuf-java</artifactId>
-      <version>3.8.0</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>

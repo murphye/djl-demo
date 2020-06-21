@@ -10,7 +10,7 @@ curl https://djl-tensorflow-javacpp.s3.amazonaws.com/tensorflow-models/chest_x_r
 cd ..
 
 mvn clean install -Dai.djl.repository.zoo.location=$PWD/models/saved_model -Pnative
-target/pneumonia-detection-quarkus-1.0.0-SNAPSHOT-runner -Dai.djl.repository.zoo.location=$PWD/models/saved_model
+target/pneumonia-detection-quarkus-1.0.0-SNAPSHOT-runner -Dai.djl.repository.zoo.location=$PWD/models/saved_model -Dorg.bytedeco.javacpp.logger.debug=true
 ```
 
 `curl localhost:8080/detect` attempts to run the model (results in `ai.djl.engine.EngineException: No deep learning engine found.`)
@@ -27,7 +27,7 @@ If you want to learn more about Quarkus, please visit its website: https://quark
 
 You can run your application in dev mode that enables live coding using:
 ```
-./mvnw quarkus:dev
+./mvnw quarkus:dev -Dai.djl.repository.zoo.location=$PWD/models/saved_model
 ```
 
 ## Packaging and running the application

@@ -8,6 +8,15 @@
     },
     {
       "pattern": ".*\\.ZooProvider$"
+    },
+    {
+      "pattern": ".*\\.dll$"
+    },
+    {
+      "pattern": ".*\\.dylib$"
+    },
+    {
+      "pattern": ".*\\.so$"
     }
   ]
 }
